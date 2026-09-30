@@ -1,0 +1,33 @@
+CONCLUSION
+
+This project investigated whether a machine learning system can
+recognize situations in which its own prediction may not be reliable.
+
+A Logistic Regression classifier was first developed as a baseline.
+It achieved 98.6% accuracy on the original test set. The model's
+prediction confidence was then analyzed to investigate whether
+confidence could act as a reliability signal.
+
+The experiments showed that correct predictions had higher average
+confidence than wrong predictions. An abstention mechanism was also
+tested by applying different confidence thresholds. At a 90%
+threshold, 125 of 143 predictions were accepted automatically and
+both errors in the test set were flagged for review.
+
+However, the experiments also showed an important limitation.
+Under a controlled distribution shift, model accuracy decreased from
+98.6% to 95.1%, while average confidence remained high. This indicates
+that high confidence does not always indicate that the model is
+reliable when the input data changes.
+
+The calibration experiment also showed that sigmoid calibration did
+not improve the Brier Score on this particular test split.
+
+Overall, the experiments provide initial evidence that confidence-based
+abstention can help identify some potentially unreliable predictions.
+However, confidence alone is not sufficient to fully determine whether
+a prediction should be trusted, particularly under distribution shift.
+
+Further research should investigate stronger uncertainty estimation,
+out-of-distribution detection, additional calibration methods, and
+more realistic distribution shifts.

@@ -1,0 +1,69 @@
+LIMITATIONS AND FUTURE WORK
+
+LIMITATIONS
+
+1. Dataset Size
+
+The experiment used 569 samples from the Breast Cancer dataset, with
+143 samples in the test set. The relatively small test set means that
+the results may change with a different train-test split.
+
+
+2. Limited Model
+
+The current implementation uses Logistic Regression as the baseline
+classification model. Other machine learning approaches have not yet
+been experimentally compared.
+
+
+3. Synthetic Distribution Shift
+
+The distribution shift was created by increasing one feature by 50%.
+This is a controlled experiment and may not represent realistic
+real-world distribution changes.
+
+
+4. Limited Calibration Testing
+
+Only sigmoid calibration was tested. Other calibration methods were
+not evaluated in the current experiments.
+
+
+5. Confidence Is Not Complete Uncertainty Estimation
+
+The current reliability signal is based mainly on prediction
+confidence. Confidence does not necessarily represent complete
+uncertainty about the input or whether the input belongs to the
+training distribution.
+
+
+6. Limited Test Errors
+
+The baseline model produced only 2 errors on the test set. Therefore,
+the 100% error rejection result at the 90% threshold is based on only
+2 errors and should not be treated as a general guarantee.
+
+
+FUTURE WORK
+
+1. Test additional uncertainty estimation methods.
+
+2. Compare different calibration methods.
+
+3. Investigate dedicated out-of-distribution detection techniques.
+
+4. Test the approach on more realistic distribution shifts.
+
+5. Evaluate the system using larger and more diverse datasets.
+
+6. Compare multiple classification models.
+
+7. Perform more robust experiments using multiple train-test splits
+or cross-validation.
+
+8. Investigate how confidence thresholds can be selected according to
+the cost of incorrect automatic predictions and human review.
+
+9. Study whether combining confidence with an OOD or uncertainty signal
+can identify unreliable predictions more effectively than confidence
+alone.

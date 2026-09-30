@@ -1,0 +1,106 @@
+FINDINGS
+
+1. Baseline Model
+
+The baseline Logistic Regression model achieved an accuracy of 98.6%
+on the test set, with 143 testing samples. The model made 2 incorrect
+predictions.
+
+This shows that the model performs well on the original test data, but
+accuracy alone does not indicate whether the model knows when its
+prediction may be unreliable.
+
+
+2. Confidence Analysis
+
+The average confidence of correct predictions was 96.04%, while the
+average confidence of wrong predictions was 75.49%.
+
+This suggests that confidence can provide useful information about
+prediction reliability. However, wrong predictions can still have
+relatively high confidence, so confidence is not a perfect reliability
+measure.
+
+
+3. Calibration
+
+The original model had a Brier Score of 0.0181, while the sigmoid
+calibrated model had a Brier Score of 0.0273.
+
+Since a lower Brier Score indicates better probabilistic performance,
+the original model performed better on this test split according to
+this metric.
+
+Therefore, sigmoid calibration did not improve the result in this
+particular experiment. This does not mean that calibration methods are
+generally ineffective; different methods, datasets, and evaluation
+settings may produce different results.
+
+
+4. Distribution Shift
+
+When one feature in the test data was increased by 50%, the model's
+accuracy decreased from 98.6% to 95.1%.
+
+However, average confidence remained high, changing only from 95.75%
+to 94.96%.
+
+This indicates that model confidence did not decrease proportionally
+to the performance degradation. Therefore, high confidence alone may
+not be sufficient for identifying changed or unfamiliar data.
+
+
+5. Abstention
+
+The abstention experiment tested different confidence thresholds.
+
+At a 90% confidence threshold, 125 out of 143 predictions were
+accepted automatically and 18 were flagged for review.
+
+All 125 accepted predictions were correct, while both model errors were
+flagged for review. This produced an error rejection rate of 100% on
+this particular test split.
+
+This provides initial evidence that an abstention mechanism can help
+reduce automatic errors by sending lower-confidence predictions for
+human review.
+
+
+6. Reliability Under Distribution Shift
+
+On the shifted test data, the 90% threshold accepted 119 predictions,
+giving a coverage of 83.22%.
+
+The accepted predictions had 100% accuracy on this particular shifted
+test split.
+
+However, the distribution shift was created artificially by modifying
+one feature. Therefore, this experiment should be considered a
+controlled robustness experiment rather than a complete real-world
+out-of-distribution evaluation.
+
+
+7. Confidence vs Actual Accuracy
+
+The confidence-bin experiment showed that the confidence ranges did
+not produce a perfectly increasing accuracy pattern.
+
+Several confidence ranges contained very few samples. For example,
+the 70%-80% range contained only one prediction.
+
+Therefore, these results provide preliminary evidence about the
+relationship between confidence and correctness, but they are not
+sufficient to make a strong calibration conclusion.
+
+
+OVERALL FINDING
+
+The experiments suggest that confidence can be useful as a reliability
+signal and that abstention can help identify predictions that should
+receive human review.
+
+However, confidence alone does not completely solve the reliability
+problem, especially when the input data changes.
+
+The results therefore support further investigation of uncertainty
+estimation and out-of-distribution detection methods.

@@ -1,0 +1,32 @@
+METHODOLOGY
+
+The project uses a classification-based machine learning approach to
+investigate whether a model can identify predictions that may be
+unreliable.
+
+First, the Breast Cancer dataset was divided into training and testing
+sets. A Logistic Regression model with feature standardization was used
+as the baseline classification model.
+
+The baseline model was evaluated using accuracy and classification
+results. Prediction probabilities were then obtained from the model and
+used as a confidence signal.
+
+Next, the relationship between model confidence and prediction errors
+was investigated. A probability calibration experiment using sigmoid
+calibration was also performed and evaluated using Brier Score and a
+calibration curve.
+
+To investigate robustness to changed data, a controlled distribution
+shift was introduced by increasing the value of one test feature by
+50%. The model's accuracy and confidence were then compared between
+the original and shifted test data.
+
+An abstention experiment was performed using different confidence
+thresholds. Predictions below the selected threshold were treated as
+cases that should be flagged for human review. Coverage, accepted
+prediction accuracy, and error rejection rate were measured.
+
+Finally, confidence ranges were compared with their observed accuracy
+to investigate whether higher confidence corresponded to more reliable
+predictions.
